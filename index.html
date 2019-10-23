@@ -1,0 +1,300 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <link
+      rel="stylesheet"
+      href="node_modules/bootstrap/dist/css/bootstrap.css"
+    />
+
+    <link href="fontawesome-free-5.9.0-web/css/all.css" rel="stylesheet" />
+    <!--load all styles -->
+    <title>AMZON CALCULATOR</title>
+  </head>
+
+  <body>
+    <div class="container">
+      <div class="form-group row" onchange="calculator();">
+        <label
+          for="colFormLabelSm"
+          class="col-sm-2 col-form-label col-form-label-lg"
+          ><i
+            class=" 	fas fa-money-bill-alt"
+            style="font-size: 38;color: indianred"
+          ></i>
+          COSTO
+        </label>
+        <div class="col-sm-10">
+          <input
+            style="background-color: slateblue; color: white"
+            type="number"
+            step="0.01"
+            class="form-control form-control-lg"
+            id="costo"
+            placeholder="COSTO"
+          />
+        </div>
+      </div>
+      <div class="form-group row" onchange="calculator();">
+        <label
+          for="colFormLabelSm"
+          class="col-sm-2 col-form-label col-form-label-lg"
+        >
+          <i
+            class="fas fa-shipping-fast"
+            style="font-size:38px;color:skyblue"
+          ></i>
+          ENVIO
+        </label>
+        <div class="col-sm-10">
+          <input
+            style="background-color: slateblue; color: white"
+            type="number"
+            step="0.01"
+            class="form-control form-control-lg"
+            id="envio"
+            placeholder="ENVIO"
+          />
+        </div>
+      </div>
+      <div class="form-group row" onchange="calculator();">
+        <label
+          for="colFormLabelSm"
+          class="col-sm-2 col-form-label col-form-label-lg"
+          ><i class="fas fa-smile" style="font-size:38px;color:green"></i>
+          UTILIDAD</label
+        >
+        <div class="col-sm-10">
+          <input
+            style="background-color: slateblue; color: white"
+            type="number"
+            step="0.01"
+            class="form-control form-control-lg"
+            id="utilidad"
+            placeholder="UTLIDAD"
+          />
+        </div>
+      </div>
+      <table>
+        <thead class="table table-bordered">
+          <tr>
+            <th>Subtotal</th>
+            <th id="subtotal">$0.00</th>
+          </tr>
+        </thead>
+      </table>
+      <br />
+      <button
+        id="button"
+        onclick="myfunction();calculator();"
+        style="display: inline-block"
+        type="button"
+        class="btn btn-primary"
+      >
+        Enter
+      </button>
+      <button
+        id="buttonClear"
+        onclick="myfunction2();"
+        style="display: inline-block"
+        type="button"
+        class="btn btn-danger"
+      >
+        Clear
+      </button>
+      <br />
+      <br />
+      <!-- porcentaje iva amazon -->
+      <div class="form-group row" onchange="myfunction3();calculator();">
+        <label
+          for="colFormLabelSm"
+          class="col-sm-2 col-form-label col-form-label-lg"
+          >IVA</label>
+        <div class="col-sm-10">
+          <input
+            type="number"
+            class="form-control form-control-lg"
+            id="iva"
+            placeholder="IVA"
+            value="16"
+          />
+        </div>
+      </div>
+      <div class="form-group row" onchange="myfunction3();calculator();">
+        <label
+          for="colFormLabelSm"
+          class="col-sm-2 col-form-label col-form-label-lg"
+          >Amazon Referencia</label
+        >
+        <div class="col-sm-10">
+          <input
+            type="number"
+            step="0.01"
+            class="form-control form-control-lg"
+            id="amazonRef"
+            placeholder="Amzon REF"
+            value="16"
+          />
+        </div>
+      </div>
+      <!-- porcentajes iva amazon -->
+      <table>
+        <thead class="table table-bordered">
+          <tr>
+            <th>TOTAL PORCENTAJE</th>
+            <th id="totalPorcentaje">0%</th>
+          </tr>
+        </thead>
+      </table>
+      <br />
+      <!-- TABLE RESULTS -->
+      <table class="table table-striped table-responsive-sm table-bordered">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Nombre</th>
+            <th scope="col">Cantidad</th>
+            <th scope="col">Porcentaje</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="table-info">
+            <th scope="row">1</th>
+            <td>Precio Final</td>
+            <td id="t-precioFinal">$</td>
+            <td id="tp-precioFinal">%</td>
+          </tr>
+          <tr class="table-warning">
+            <th scope="row">2</th>
+            <td>Amazon Referencia</td>
+            <td id="t-amzref">$</td>
+            <td id="tp-amzref">%</td>
+          </tr>
+          <tr class="table-danger" onchange="myfunction3();">
+            <th scope="row">3</th>
+            <td>Iva</td>
+            <td id="t-iva">$</td>
+            <td id="tp-iva">%</td>
+          </tr>
+          <tr class="table-warning">
+            <th scope="row">4</th>
+            <td>Envio</td>
+            <td id="t-envio">$</td>
+            <td id="tp-envio">%</td>
+          </tr>
+          <tr class="table-danger">
+            <th scope="row">5</th>
+            <td>Costo</td>
+            <td id="t-costo">$</td>
+            <td id="tp-costo">%</td>
+          </tr>
+          <tr class="table-success">
+            <th scope="row">6</th>
+            <td>Utilidad</td>
+            <td id="t-utilidad">$</td>
+            <td id="tp-utilidad">%</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <script src="node_modules/bootstrap/dist/js/bootstrap.js"></script>
+    <script src="node_modules/jquery/dist/jquery.js"></script>
+    <script src="node_modules/popper.js/dist/popper.js"></script>
+    <script>
+      document.getElementById("totalPorcentaje").innerHTML = "31%";
+
+      function myfunction() {
+        let costo = parseInt(document.getElementById("costo").value);
+        let envio = parseFloat(document.getElementById("envio").value);
+        let utilidad = parseInt(document.getElementById("utilidad").value);
+        let subtotal = costo + envio + utilidad;
+        let subtotaldiv = document.getElementById("subtotal");
+        subtotaldiv.innerHTML = `$${subtotal}`;
+        return subtotal;
+      }
+
+      function myfunction2() {
+        let subtotaldiv = document.getElementById("subtotal");
+        subtotaldiv.innerHTML = "$0";
+        document.getElementById("costo").value = 0;
+        document.getElementById("envio").value = 0;
+        document.getElementById("utilidad").value = 0;
+      }
+
+      function myfunction3() {
+        let x = parseInt(document.getElementById("iva").value);
+        let y = parseFloat(document.getElementById("amazonRef").value);
+
+        let totalPorcentaje = (document.getElementById("totalPorcentaje").innerHTML = `${x + y}%`);
+        let porcentaje = 100 - (13.8 + y);
+        console.log(porcentaje);
+        return porcentaje;
+      }
+
+      function calculator() {
+        //precio
+        let porcentaje = myfunction3();
+        let subtotal = myfunction();
+
+        let precioFinal = (subtotal * 100) / porcentaje;
+        document.getElementById(
+          "t-precioFinal"
+        ).innerHTML = precioFinal.toFixed(2);
+
+        //amazon referecnia
+        let refValue = parseFloat(document.getElementById("amazonRef").value);
+        let amazonRef = (precioFinal * refValue) / 100;
+        document.getElementById("t-amzref").innerHTML = amazonRef.toFixed(2);
+        //IVA
+        let ivaValue = parseInt(document.getElementById("iva").value);
+        let iva = precioFinal- precioFinal /((100 + ivaValue)/100);
+        document.getElementById("t-iva").innerHTML = iva.toFixed(2);
+        //ENVIO
+        let envio = parseFloat(document.getElementById("envio").value);
+        document.getElementById("t-envio").innerHTML = envio.toFixed(2);
+        //COSTO
+        let costo = parseInt(document.getElementById("costo").value);
+        document.getElementById("t-costo").innerHTML = costo.toFixed(2);
+        //UTILIDAD
+        let utilidad = precioFinal - amazonRef - iva - envio - costo;
+        document.getElementById("t-utilidad").innerHTML = utilidad.toFixed(2);
+
+        //PORCENTAJES////////
+        let p_precioFinal = (precioFinal / precioFinal) * 100;
+        let p_amazonRef = (amazonRef / precioFinal) * 100;
+        let p_iva = (iva / precioFinal) * 100;
+        let p_envio = (envio / precioFinal) * 100;
+        let p_costo = (costo / precioFinal) * 100;
+        var p_utilidad = (utilidad / precioFinal) * 100;
+        if (
+          isNaN(p_precioFinal) ||
+          isNaN(p_amazonRef) ||
+          isNaN(p_iva) ||
+          isNaN(p_envio) ||
+          isNaN(p_costo) ||
+          isNaN(p_utilidad)
+        ) {
+          p_precioFinal = 0;
+          p_amazonRef = 0;
+          p_iva = 0;
+          p_envio = 0;
+          p_costo = 0;
+          p_utilidad = 0;
+        }
+        document.getElementById("tp-precioFinal").innerHTML = `${p_precioFinal}%`;
+        //p-amazon referencia
+        document.getElementById("tp-amzref").innerHTML = `${p_amazonRef.toFixed(2)}%`;
+        //p-iva
+        document.getElementById("tp-iva").innerHTML = `${p_iva.toFixed(2)}%`;
+        //p-envio
+        document.getElementById("tp-envio").innerHTML = `${p_envio.toFixed(2)}%`;
+        //p-costo
+        document.getElementById("tp-costo").innerHTML = `${p_costo.toFixed(2)}%`;
+        //p-utilidad
+        document.getElementById("tp-utilidad").innerHTML = `${p_utilidad.toFixed(2)}%`;
+      }
+    </script>
+  </body>
+</html>
