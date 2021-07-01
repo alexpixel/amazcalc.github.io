@@ -1,2 +1,3 @@
-# https://alexpixel.github.io/amzcal.github.io/
+# check-out this website here
+[amazon Calculator sellin](https://alexpixel.github.io/amz)
 
